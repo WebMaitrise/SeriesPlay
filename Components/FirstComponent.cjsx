@@ -1,3 +1,5 @@
+{Link} = ReactRouter
+
 @FirstComponent = React.createClass
   render: ->
-    <div>First Component</div>
+    <div>First Component <Link to="/second">Second</Link></div>
