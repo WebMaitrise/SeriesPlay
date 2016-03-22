@@ -6,17 +6,14 @@
   getMeteorData: ->
     quizzes: Quizzes.find({}).fetch()
 
-  componentWillMount: ->
+  componentDidMount: ->
     Meteor.subscribe 'quizzes'
 
   render: ->
     quizzes = @data.quizzes.map (quizz) ->
-      <QuizzListItem key={quizz._id._str} data={quizz} />
+      $ QuizzListItem, { key: quizz._id._str, data: quizz }
 
-    <div>
-      <h2>Liste des quizz</h2>
+    $ "div", {},
+      $ "h2", {}, "Liste des quizz"
 
-      <ul>
-        {quizzes}
-      </ul>
-    </div>
+      $ "ul", {}, quizzes

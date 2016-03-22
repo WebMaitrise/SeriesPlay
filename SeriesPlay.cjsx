@@ -1,12 +1,13 @@
 @Quizzes = new Mongo.Collection 'quizzes'
 {Route, IndexRoute} = ReactRouter
+@$ = React.createElement
 
 Meteor.startup ->
-  AppRoutes = <Route path="/" component={AppComponent}>
-      <IndexRoute component={Index} />
-      <Route path="/login" component={LoginForm} />
-      <Route path="/account" component={Account} />
-    </Route>
+  AppRoutes = $ Route, { path:"/", component: App },
+    $ IndexRoute, { component: Index }
+    $ Route, { path: "/login", component: LoginForm }
+    $ Route, { path: "/account", component: Account }
+    $ Route, { path: "/signin", component: SignInForm }
 
   ReactRouterSSR.Run AppRoutes
 

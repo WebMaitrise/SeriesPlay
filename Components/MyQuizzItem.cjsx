@@ -2,10 +2,9 @@
 
 @MyQuizzItem = React.createClass
   render: ->
-    <li>
-      {this.props.data._id._str}
-      <a href="#" onClick={this._remove}>Supr.</a>
-    </li>
+    $ "li", {},
+      @props.data._id._str
+      $ "a", { href: "#", onClick: @_remove }, "Supr."
 
   _remove: (e) ->
     e.preventDefault()

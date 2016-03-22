@@ -3,14 +3,12 @@
 @LoginForm = React.createClass
 
   render: ->
-    <div>
-      <form onSubmit={this._submit}>
-        <input type="text" name="email" />
-        <input type="password" name="password" />
-        <input type="submit" />
-      </form>
-    </div>
-  
+    $ "div", {},
+      $ "form", { onSubmit: @_submit },
+        $ "input", { type: 'text', name: 'email' }
+        $ "input", { type: 'password', name: 'password' }
+        $ "input", { type: 'submit' }
+
   _submit: (e) ->
     e.preventDefault()
 

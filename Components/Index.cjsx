@@ -3,6 +3,5 @@
 @Index = React.createClass
 
   render: ->
-    <div>
-      <QuizzList />
-    </div>
+    $ "div", {},
+      $ QuizzList
