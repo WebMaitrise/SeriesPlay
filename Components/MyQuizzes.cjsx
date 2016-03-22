@@ -1,6 +1,6 @@
 {Link} = ReactRouter
 
-@Account = React.createClass
+@MyQuizzes = React.createClass
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
@@ -8,16 +8,24 @@
 
   componentWillMount: ->
     Meteor.subscribe 'quizzes'
+    Meteor.subscribe 'users'
+
   render: ->
     quizzes = @data.quizzes.map (quizz) ->
-      <li>{quizz.test}</li>
+      <MyQuizzItem key={quizz._id._str} data={quizz} />
 
     <div>
-      <div>Votre compte {Meteor.userId()} <a href="#" onClick={this._logout}>Logout</a></div>
-      <h2>Mes Quizz</h2>
-      <ul>{quizzes}</ul>
+      <h2>Mes quizzes</h2>
+
+      <ul>
+        {quizzes}
+      </ul>
+
+      <a href="#" onClick={this._logout}>Logout</a>
     </div>
 
-  _logout: ->
+  _logout: (e) ->
+    e.preventDefault()
+
     Meteor.logout()
     ReactRouter.browserHistory.push '/'

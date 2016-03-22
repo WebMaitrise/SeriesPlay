@@ -1,12 +1,15 @@
 {Link} = ReactRouter
 
 @LoginForm = React.createClass
+
   render: ->
-    <form onSubmit={this._submit}>
-      <input type="text" name="email" />
-      <input type="password" name="password" />
-      <input type="submit" />
-    </form>
+    <div>
+      <form onSubmit={this._submit}>
+        <input type="text" name="email" />
+        <input type="password" name="password" />
+        <input type="submit" />
+      </form>
+    </div>
   
   _submit: (e) ->
     e.preventDefault()
@@ -15,4 +18,4 @@
       if error
         console.log error.reason
       else
-        ReactRouter.browserHistory.push '/account'
+        ReactRouter.browserHistory.push '/'
