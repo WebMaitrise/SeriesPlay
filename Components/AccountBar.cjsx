@@ -5,7 +5,9 @@
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
-    currentUser: Meteor.user()
+    Meteor.subscribe 'users'
+
+    currentUser: Accounts.users.findOne Meteor.userId()
 
   render: ->
     if @data.currentUser

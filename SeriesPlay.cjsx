@@ -27,6 +27,9 @@ if Meteor.isServer
         }
       ]
 
+  Meteor.publish 'users', ->
+    Accounts.users.find( _id: @userId )
+
 Meteor.methods
   removeQuizz: (id) ->
     Quizzes.remove id
