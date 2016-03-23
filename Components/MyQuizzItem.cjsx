@@ -3,7 +3,7 @@
 @MyQuizzItem = React.createClass
   render: ->
     $ "li", {},
-      @props.data.name
+      $ Link, { to: '/quizzes/'+@props.data._id }, @props.data.name
       " | "
       $ "a", { href: "#", onClick: @_remove }, "Supr."
 

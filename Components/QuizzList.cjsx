@@ -11,7 +11,7 @@
 
   render: ->
     quizzes = @data.quizzes.map (quizz) ->
-      $ QuizzListItem, { key: quizz._id._str, data: quizz }
+      $ QuizzListItem, { key: quizz._id, data: quizz }
 
     $ "div", {},
       $ "h2", {}, "Liste des quizz"

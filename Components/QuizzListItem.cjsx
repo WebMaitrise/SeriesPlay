@@ -2,4 +2,5 @@
 
 @QuizzListItem = React.createClass
   render: ->
-    $ "li", {}, @props.data.name
+    $ "li", {},
+      $ Link, { to: '/quizzes/'+@props.data._id }, @props.data.name

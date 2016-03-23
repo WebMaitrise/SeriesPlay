@@ -9,6 +9,7 @@ Meteor.startup ->
     $ Route, { path: "/account", component: Account }
     $ Route, { path: "/signin", component: SignInForm }
     $ Route, { path: "/quizzes/new", component: createQuizzForm }
+    $ Route, { path: "/quizzes/:quizzid", component: ShowQuizz }
 
   ReactRouterSSR.Run AppRoutes
 
