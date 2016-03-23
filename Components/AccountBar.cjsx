@@ -14,6 +14,8 @@
         " | "
         $ Link, { to:'/account' }, "Mes Quizzes"
         " | "
+        $ Link, { to:'/quizzes/new' }, "New Quizz"
+        " | "
         $ "a", { href:'#', onClick: @_logout }, "Logout"
     else
       $ "div", {},

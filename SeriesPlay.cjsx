@@ -8,6 +8,7 @@ Meteor.startup ->
     $ Route, { path: "/login", component: LoginForm }
     $ Route, { path: "/account", component: Account }
     $ Route, { path: "/signin", component: SignInForm }
+    $ Route, { path: "/quizzes/new", component: createQuizzForm }
 
   ReactRouterSSR.Run AppRoutes
 
@@ -28,6 +29,14 @@ if Meteor.isServer
 Meteor.methods
   removeQuizz: (id) ->
     Quizzes.remove id
+
+  createQuizz: (name) ->
+    if !this.userId
+      throw new Meteor.Error "not-authorized"
+
+    Quizzes.insert
+      name: name
+      owner: this.userId
 
 if Meteor.isServer
   ServiceConfiguration.configurations.remove
