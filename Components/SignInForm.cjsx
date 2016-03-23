@@ -16,5 +16,7 @@
     Accounts.createUser
       email: e.target.email.value
       password: e.target.password.value
+      profile:
+        name: e.target.name.value
 
       ReactRouter.browserHistory.push '/'
