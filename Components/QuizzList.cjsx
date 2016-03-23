@@ -4,10 +4,9 @@
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
-    quizzes: Quizzes.find({}).fetch()
-
-  componentDidMount: ->
     Meteor.subscribe 'quizzes'
+
+    quizzes: Quizzes.find({}).fetch()
 
   render: ->
     quizzes = @data.quizzes.map (quizz) ->

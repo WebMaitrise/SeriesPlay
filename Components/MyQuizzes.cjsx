@@ -4,10 +4,9 @@
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
-    quizzes: Quizzes.find({ owner: Meteor.userId() }).fetch()
-
-  componentDidMount: ->
     Meteor.subscribe 'quizzes'
+
+    quizzes: Quizzes.find({ owner: Meteor.userId() }).fetch()
 
   render: ->
     quizzes = @data.quizzes.map (quizz) ->

@@ -4,10 +4,9 @@
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
-    quizz: Quizzes.findOne(@props.params.quizzid)
-
-  componentDidMount: ->
     Meteor.subscribe 'quizzes'
+
+    quizz: Quizzes.findOne(@props.params.quizzid)
 
   render: ->
     $ "div", {},
