@@ -9,6 +9,9 @@
         $ "input", { type: 'password', name: 'password' }
         $ "input", { type: 'submit' }
 
+      $ "button", { onClick: @_fb_login }, "Login with Facebook"
+      $ "button", { onClick: @_twitter_login }, "Login with Twitter"
+
   _submit: (e) ->
     e.preventDefault()
 
@@ -17,3 +20,13 @@
         console.log error.reason
       else
         ReactRouter.browserHistory.push '/'
+
+  _fb_login: (e) ->
+    e.preventDefault()
+
+    Meteor.loginWithFacebook()
+
+  _twitter_login: (e) ->
+    e.preventDefault()
+
+    Meteor.loginWithTwitter()

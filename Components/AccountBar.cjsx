@@ -10,7 +10,7 @@
   render: ->
     if @data.currentUser
       $ "div", {},
-        "Welcome "+@data.currentUser.emails[0].address
+        "Welcome "+@data.currentUser.profile.name
         " | "
         $ Link, { to:'/account' }, "Mes Quizzes"
         " | "

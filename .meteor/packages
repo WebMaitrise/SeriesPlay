@@ -27,3 +27,6 @@ reactrouter:react-router-ssr
 accounts-password
 alanning:roles
 react-meteor-data
+accounts-facebook
+service-configuration
+accounts-twitter
