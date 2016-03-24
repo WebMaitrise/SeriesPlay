@@ -10,6 +10,7 @@ Meteor.startup ->
     $ Route, { path: "/signin", component: SignInForm }
     $ Route, { path: "/quizzes/new", component: createQuizzForm }
     $ Route, { path: "/quizzes/:quizzid", component: ShowQuizz }
+    $ Route, { path: "/quizzes/:quizzid/edit", component: EditQuizz }
 
   ReactRouterSSR.Run AppRoutes
 
@@ -35,14 +36,28 @@ Meteor.methods
     Quizzes.remove id
 
   createQuizz: (name) ->
-    if !this.userId
+    if !this.userId #TODO : Add security
       throw new Meteor.Error "not-authorized"
 
     Quizzes.insert
       name: name
       owner: this.userId
+      questions: []
     , (err, quizzId) ->
       ReactRouter.browserHistory.push '/quizzes/'+quizzId
+
+  addQuestion: (quizzId, question) ->
+    if !this.userId #TODO : Add security
+      throw new Meteor.Error "not-authorized"
+
+    quizz = Quizzes.findOne quizzId
+
+    quizz.questions.push
+      question: question
+
+    Quizzes.update quizz._id,
+      $set:
+        questions: quizz.questions
 
 if Meteor.isServer
   ServiceConfiguration.configurations.remove

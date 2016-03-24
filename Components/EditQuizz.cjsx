@@ -1,6 +1,6 @@
 {Link} = ReactRouter
 
-@ShowQuizz = React.createClass
+@EditQuizz = React.createClass
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
@@ -9,10 +9,11 @@
     quizz: Quizzes.findOne(@props.params.quizzid)
 
   render: ->
-
+    console.log @data.quizz
     if Meteor.userId() == @data.quizz.owner
-      editQuizz = $ Link, { to: '/quizzes/'+@data.quizz._id+'/edit' }, "Modifier le Quizz"
-
+      editQuizz = $ EditQuizzQuestions, { quizzId: @data.quizz._id, questions: @data.quizz.questions }
+    else
+      editQuizz = "Permission denied"
 
     $ "div", {},
       $ "h2", {}, @data.quizz.name
