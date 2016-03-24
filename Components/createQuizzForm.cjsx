@@ -12,4 +12,3 @@
     e.preventDefault()
 
     Meteor.call "createQuizz", e.target.name.value
-    ReactRouter.browserHistory.push '/'

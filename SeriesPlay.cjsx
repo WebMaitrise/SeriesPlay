@@ -41,6 +41,8 @@ Meteor.methods
     Quizzes.insert
       name: name
       owner: this.userId
+    , (err, quizzId) ->
+      ReactRouter.browserHistory.push '/quizzes/'+quizzId
 
 if Meteor.isServer
   ServiceConfiguration.configurations.remove
