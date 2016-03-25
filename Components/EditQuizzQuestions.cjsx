@@ -7,7 +7,8 @@
       questions = "Pas de questions pour le moment"
     else
       questions = @props.questions.map (question) ->
-        $ "div", {}, question.question #TODO : Question Component
+        $ "div", {},
+          $ EditQuizzQuestionsItem, { key: question._id, question: question }
 
     $ "div", {},
       $ EditQuizzAddQuestion, { quizzId: @props.quizzId }

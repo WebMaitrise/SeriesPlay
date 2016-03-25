@@ -1,4 +1,6 @@
 @Quizzes = new Mongo.Collection 'quizzes'
+@Questions = new Mongo.Collection 'questions'
+
 {Route, IndexRoute} = ReactRouter
 @$ = React.createElement
 
@@ -39,7 +41,6 @@ Meteor.methods
     Quizzes.insert
       name: name
       owner: this.userId
-      questions: []
     , (err, quizzId) ->
       ReactRouter.browserHistory.push '/quizzes/'+quizzId
 
@@ -47,14 +48,24 @@ Meteor.methods
     if !this.userId #TODO : Add security
       throw new Meteor.Error "not-authorized"
 
-    quizz = Quizzes.findOne quizzId
-
-    quizz.questions.push
+    questionId = Questions.insert
       question: question
+      quizz: quizzId
 
-    Quizzes.update quizz._id,
-      $set:
-        questions: quizz.questions
+    Quizzes.update quizzId,
+      $push:
+        questions: Questions.findOne questionId
+
+  removeQuestion: (questionId) ->
+    if !this.userId #TODO : Add security
+      throw new Meteor.Error "not-authorized"
+
+    question = Questions.findOne questionId
+
+    Quizzes.update question.quizz,
+      $pull:
+        questions:
+          _id: questionId
 
 if Meteor.isServer
   ServiceConfiguration.configurations.remove
