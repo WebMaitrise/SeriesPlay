@@ -19,13 +19,10 @@ if Meteor.isServer
   Meteor.publish 'quizzes', ->
     Quizzes.find
       $or: [
-        {
-          private:
-            $ne: true
-        }
-        {
-          owner: this.userId
-        }
+        private:
+          $ne: true 
+      ,
+        owner: this.userId
       ]
 
   Meteor.publish 'users', ->
