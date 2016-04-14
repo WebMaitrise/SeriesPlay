@@ -2,21 +2,33 @@
 
 @SignInForm = React.createClass
 
-  render: ->
-    $ "div", {},
-      $ "form", { onSubmit: @_submit },
-        $ "input", { type: 'text', name: 'name', placeholder: 'Your name' }
-        $ "input", { type: 'text', name: 'email', placeholder: 'Your email' }
-        $ "input", { type: 'password', name: 'password', placeholder: 'Your Password' }
-        $ "input", { type: 'submit' }
+	getInitialState: ->
+		error: null
 
-  _submit: (e) ->
-    e.preventDefault()
+	render: ->
 
-    Accounts.createUser
-      email: e.target.email.value
-      password: e.target.password.value
-      profile:
-        name: e.target.name.value
+		error = $ "div", { className: 'error' }, @state.error
 
-      ReactRouter.browserHistory.push '/'
+		$ "div", {},
+			error,
+			$ "form", { onSubmit: @_submit },
+				$ "input", { type: 'text', name: 'name', placeholder: 'Your name' }
+				$ "input", { type: 'text', name: 'email', placeholder: 'Your email' }
+				$ "input", { type: 'password', name: 'password', placeholder: 'Your Password' }
+				$ "input", { type: 'submit' }
+
+	_submit: (e) ->
+		e.preventDefault()
+
+		user = Accounts.createUser
+			email: e.target.email.value
+			password: e.target.password.value
+			profile:
+				name: e.target.name.value
+		, ( (error) ->
+			if error
+				@setState
+					error: error.reason
+			else
+				ReactRouter.browserHistory.push '/'
+		).bind @
