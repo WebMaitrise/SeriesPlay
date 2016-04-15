@@ -1,7 +1,3 @@
-@Quizzes = new Mongo.Collection 'quizzes'
-@Questions = new Mongo.Collection 'questions'
-@Responses = new Mongo.Collection 'responses'
-
 {Route, IndexRoute} = ReactRouter
 @$ = React.createElement
 
@@ -50,14 +46,9 @@ Meteor.methods
 		if !this.userId #TODO : Add security
 			throw new Meteor.Error "not-authorized"
 
-		questionId = Questions.insert
+		Questions.insert
 			question: question
 			quizz: quizzId
-
-		# TODO move into hook
-		Quizzes.update quizzId,
-			$push:
-				questions: Questions.findOne questionId
 
 	removeQuestion: (questionId) ->
 		if !this.userId #TODO : Add security
@@ -69,44 +60,15 @@ Meteor.methods
 		if !this.userId #TODO : Add security
 			throw new Meteor.Error "not-authorized"
 
-		question = Questions.findOne questionId
-
-		responseId = Responses.insert
+		Responses.insert
 			response: response
 			question: questionId
-
-		#TODO Move into hook
-		Questions.update questionId,
-			$push:
-				responses: Responses.findOne responseId
 
 	removeResponse: (responseId) ->
 		if !this.userId #TODO : Add security
 			throw new Meteor.Error "not-authorized"
 
 		Responses.remove responseId
-
-	Questions.after.remove (userId, doc) ->
-		#Remove Question in the Quizz
-		Quizzes.update doc.quizz,
-			$pull:
-				questions:
-					_id: doc._id
-
-		#Remove All responses of this Question
-		Responses.remove
-			question: doc._id
-
-	Responses.after.remove (userId, doc) ->
-		#Remove Response in the Question
-		Questions.update doc.question,
-			$pull:
-				responses:
-					_id: doc._id
-
-	#TODO Hooks
-  ## On Create Response (Add this response into Question Entity)
-  ## On Create Question (Add this question into Quizz Entity)
 
 if Meteor.isServer
 	ServiceConfiguration.configurations.remove
