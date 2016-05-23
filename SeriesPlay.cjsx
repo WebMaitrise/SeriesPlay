@@ -1,3 +1,5 @@
+React = require 'react'
+
 {Route, IndexRoute} = ReactRouter
 @$ = React.createElement
 
