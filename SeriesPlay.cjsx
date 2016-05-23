@@ -1,6 +1,3 @@
-@Quizzes = new Mongo.Collection 'quizzes'
-@Questions = new Mongo.Collection 'questions'
-
 {Route, IndexRoute} = ReactRouter
 @$ = React.createElement
 
@@ -31,6 +28,7 @@ if Meteor.isServer
 		Accounts.users.find( _id: @userId )
 
 Meteor.methods
+	#TODO : Remove questions and responses associed
 	removeQuizz: (id) ->
 		Quizzes.remove id
 
@@ -48,26 +46,29 @@ Meteor.methods
 		if !this.userId #TODO : Add security
 			throw new Meteor.Error "not-authorized"
 
-		questionId = Questions.insert
+		Questions.insert
 			question: question
 			quizz: quizzId
-
-		Quizzes.update quizzId,
-			$push:
-				questions: Questions.findOne questionId
 
 	removeQuestion: (questionId) ->
 		if !this.userId #TODO : Add security
 			throw new Meteor.Error "not-authorized"
 
-		question = Questions.findOne questionId
-
 		Questions.remove questionId
 
-		Quizzes.update question.quizz,
-			$pull:
-				questions:
-					_id: questionId
+	addResponse: (questionId, response) ->
+		if !this.userId #TODO : Add security
+			throw new Meteor.Error "not-authorized"
+
+		Responses.insert
+			response: response
+			question: questionId
+
+	removeResponse: (responseId) ->
+		if !this.userId #TODO : Add security
+			throw new Meteor.Error "not-authorized"
+
+		Responses.remove responseId
 
 if Meteor.isServer
 	ServiceConfiguration.configurations.remove
