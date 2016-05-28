@@ -1,7 +1,12 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@Account = React.createClass
+MyQuizzes = require './MyQuizzes.cjsx'
 
+Account = React.createClass
   render: ->
     $ "div", { className:'test' },
       $ MyQuizzes
+
+
+module.exports = Account

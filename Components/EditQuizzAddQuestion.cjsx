@@ -1,6 +1,7 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@EditQuizzAddQuestion = React.createClass
+EditQuizzAddQuestion = React.createClass
   render: ->
 
     $ "form", { onSubmit: @_submit },
@@ -11,3 +12,6 @@
     e.preventDefault()
 
     Meteor.call "addQuestion", @props.quizzId, e.target.question.value
+
+
+module.exports = EditQuizzAddQuestion

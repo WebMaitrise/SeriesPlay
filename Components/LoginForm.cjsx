@@ -1,6 +1,7 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@LoginForm = React.createClass
+LoginForm = React.createClass
 
 	getInitialState: ->
 		error: null
@@ -40,3 +41,6 @@
 		e.preventDefault()
 
 		Meteor.loginWithTwitter()
+
+
+module.exports = LoginForm

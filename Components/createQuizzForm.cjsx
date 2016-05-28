@@ -1,6 +1,7 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@createQuizzForm = React.createClass
+createQuizzForm = React.createClass
 
   render: ->
     $ "div", {},
@@ -12,3 +13,6 @@
     e.preventDefault()
 
     Meteor.call "createQuizz", e.target.name.value
+
+
+module.exports = createQuizzForm

@@ -1,9 +1,15 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@App = React.createClass
+AccountBar = require './AccountBar.cjsx'
+
+App = React.createClass
   render: ->
     $ "div", {},
       $ "h2", {},
         $ Link, { to: '/' }, "Quizz App"
       $ AccountBar
       @props.children
+
+
+module.exports = App

@@ -1,5 +1,14 @@
 React = require 'react'
 
+App = require './Components/App.cjsx'
+Index = require './Components/Index.cjsx'
+LoginForm = require './Components/LoginForm.cjsx'
+Account = require './Components/Account.cjsx'
+SignInForm = require './Components/SignInForm.cjsx'
+createQuizzForm = require './Components/createQuizzForm.cjsx'
+ShowQuizz = require './Components/ShowQuizz.cjsx'
+EditQuizz = require './Components/EditQuizz.cjsx'
+
 {Route, IndexRoute} = require('react-router');
 @$ = React.createElement
 

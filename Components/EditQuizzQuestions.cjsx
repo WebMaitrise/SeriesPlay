@@ -1,6 +1,10 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@EditQuizzQuestions = React.createClass
+EditQuizzQuestionsItem = require './EditQuizzQuestionsItem.cjsx'
+EditQuizzAddQuestion = require './EditQuizzAddQuestion.cjsx'
+
+EditQuizzQuestions = React.createClass
   render: ->
 
     if !@props.questions or !@props.questions.length
@@ -13,3 +17,6 @@
     $ "div", {},
       $ EditQuizzAddQuestion, { quizzId: @props.quizzId }
       questions
+
+
+module.exports = EditQuizzQuestions

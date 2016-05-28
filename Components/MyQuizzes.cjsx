@@ -1,6 +1,9 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@MyQuizzes = React.createClass
+MyQuizzItem = require './MyQuizzItem.cjsx'
+
+MyQuizzes = React.createClass
   mixins: [ ReactMeteorData ]
 
   getMeteorData: ->
@@ -15,3 +18,6 @@
     $ "div", {},
       $ "h2", {}, "Mes quizzes"
       $ "ul", {}, quizzes
+
+
+module.exports = MyQuizzes

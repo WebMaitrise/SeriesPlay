@@ -1,6 +1,7 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@AccountBar = React.createClass
+AccountBar = React.createClass
 
   mixins: [ ReactMeteorData ]
 
@@ -30,3 +31,6 @@
 
     Meteor.logout()
     ReactRouter.browserHistory.push '/'
+
+
+module.exports = AccountBar

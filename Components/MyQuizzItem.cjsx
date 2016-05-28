@@ -1,6 +1,7 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@MyQuizzItem = React.createClass
+MyQuizzItem = React.createClass
   render: ->
     $ "li", {},
       $ Link, { to: '/quizzes/'+@props.data._id }, @props.data.name
@@ -11,3 +12,6 @@
     e.preventDefault()
 
     Meteor.call "removeQuizz", @props.data._id
+
+
+module.exports = MyQuizzItem

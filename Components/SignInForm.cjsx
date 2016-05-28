@@ -1,6 +1,7 @@
-{Link} = require('react-router');
+React = require 'react'
+{Link} = require 'react-router'
 
-@SignInForm = React.createClass
+SignInForm = React.createClass
 
 	getInitialState: ->
 		error: null
@@ -32,3 +33,6 @@
 			else
 				ReactRouter.browserHistory.push '/'
 		).bind @
+
+
+module.exports = SignInForm
