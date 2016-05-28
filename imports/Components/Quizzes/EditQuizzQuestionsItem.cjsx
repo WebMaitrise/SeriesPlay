@@ -1,4 +1,6 @@
 React = require 'react'
+$ = React.createElement
+
 {Link} = require 'react-router'
 
 EditQuizzQuestionsItem = React.createClass

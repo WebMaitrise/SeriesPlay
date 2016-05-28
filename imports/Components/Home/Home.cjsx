@@ -1,13 +1,15 @@
 React = require 'react'
+$ = React.createElement
+
 {Link} = require 'react-router'
 
 QuizzList = require './QuizzList.cjsx'
 
-Index = React.createClass
+Home = React.createClass
 
   render: ->
     $ "div", {},
       $ QuizzList
 
 
-module.exports = Index
+module.exports = Home

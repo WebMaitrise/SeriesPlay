@@ -1,9 +1,11 @@
 React = require 'react'
+$ = React.createElement
+
 {Link} = require 'react-router'
 
 AccountBar = require './AccountBar.cjsx'
 
-App = React.createClass
+Layout = React.createClass
   render: ->
     $ "div", {},
       $ "h2", {},
@@ -12,4 +14,4 @@ App = React.createClass
       @props.children
 
 
-module.exports = App
+module.exports = Layout
