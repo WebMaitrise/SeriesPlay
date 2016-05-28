@@ -1,4 +1,4 @@
-{Link} = ReactRouter
+{Link} = require('react-router');
 
 @MyQuizzes = React.createClass
   mixins: [ ReactMeteorData ]

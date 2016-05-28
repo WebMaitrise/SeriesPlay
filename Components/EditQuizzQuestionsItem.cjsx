@@ -1,4 +1,4 @@
-{Link} = ReactRouter
+{Link} = require('react-router');
 
 @EditQuizzQuestionsItem = React.createClass
   render: ->

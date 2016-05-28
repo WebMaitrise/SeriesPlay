@@ -1,6 +1,6 @@
 React = require 'react'
 
-{Route, IndexRoute} = ReactRouter
+{Route, IndexRoute} = require('react-router');
 @$ = React.createElement
 
 Meteor.startup ->
